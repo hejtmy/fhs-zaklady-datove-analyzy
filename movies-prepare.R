@@ -34,6 +34,7 @@ df_movies <- df_movies %>%
 write_csv(df_movies, "data/movies/movies_small.csv")
 df_ratings <- read.csv("data/movies/ratings_small.csv", sep=",")
 df_ratings <- df_ratings %>%
-  left_join(select(df_movies, id, title), by=c("movieId"="id")) %>%
+  left_join(select(df_movies, id, title, month, is_comedy, is_action, is_horror, vote_average, original_language),
+            by=c("movieId"="id")) %>%
   filter(!is.na(title))
 write_csv(df_ratings, "movies_ratings.csv")
